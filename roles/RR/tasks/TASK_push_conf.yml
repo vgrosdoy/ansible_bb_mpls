@@ -2,15 +2,19 @@
 # TASK to push FULL configuration for role SANDBOX
   - name: TASK PUSH-CONF -- ALL BLOCKS of device configuration
     ios_config: 
-      src="templates/{{ item }}.j2"
+      provider:
+        timeout: 60
+      src: "templates/{{ item }}.j2"
     with_items:
       - "{{ Template_Listing }}"
     tags: push-conf
+
     
 # TASK to WRITE configuration for role SANDBOX
   - name: TASK PUSH-CONF -- SAVE CONFIGURATION
     ios_config:
+      provider:
+        timeout: 60
       save_when: modified
+#      timeout: 30 ==> Deprecated !!!...
     tags: push-conf
-...
-

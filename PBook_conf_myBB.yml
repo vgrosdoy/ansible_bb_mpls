@@ -8,5 +8,4 @@
   hosts: BACKBONE
   roles :
   - BACKBONE
-#  - RR
 ...

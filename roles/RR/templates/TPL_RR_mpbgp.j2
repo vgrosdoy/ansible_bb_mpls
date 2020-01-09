@@ -1,0 +1,53 @@
+{# TEMPLATE TO CONFIGURE BGP ON THE RR ROLE #}
+
+{# -------------------------- #}
+ip bgp-community new-format
+{# -------------------------- #}
+key chain KEY_BFD
+ key 1
+  key-string aa99bb88cc77dd66ee55ff44aa
+  accept-lifetime 10:00:00 Jul 30 2018 infinite
+  send-lifetime 10:00:00 Jul 30 2018 infinite
+  cryptographic-algorithm hmac-sha-512
+{# -------------------------- #}
+bfd-template multi-hop M_HOP_BGP_BFD
+ interval min-tx 250 min-rx 250 multiplier 3
+ authentication meticulous-sha-1 keychain KEY_BFD
+{# -------------------------- #}
+bfd map ipv4  {{ _IP_loops_base_ }}.0/24  {{ _IP_loops_base_ }}.0/24 M_HOP_BGP_BFD
+{# -------------------------- #}
+
+router bgp {{ _BGP_AS_number_ }}
+ template peer-policy VPNV4_TO_CLIENT
+  route-reflector-client
+  advertisement-interval 1
+  send-community both
+ exit-peer-policy
+ !
+ template peer-session BGP_TO_CLIENT
+  remote-as {{ _BGP_AS_number_ }}
+  password aa99bb88cc77dd66ee55ff44a
+  update-source Loopback0
+  timers 5 15
+ exit-peer-session
+ !
+ bgp router-id {{ _IP_loops_base_ }}.{{ _dev_ID_ }}
+ bgp cluster-id {{ _IP_loops_base_ }}.66
+ bgp log-neighbor-changes
+ no bgp default ipv4-unicast
+{% for pe_loop in _BGP_PE_loops %}
+ neighbor {{ _IP_loops_base_ }}.{{ pe_loop }} inherit peer-session BGP_TO_CLIENT
+ neighbor {{ _IP_loops_base_ }}.{{ pe_loop }} fall-over bfd multi-hop
+{% endfor %}
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family vpnv4
+{% for pe_loop in _BGP_PE_loops %}
+ neighbor {{ _IP_loops_base_ }}.{{ pe_loop }} activate
+ neighbor {{ _IP_loops_base_ }}.{{ pe_loop }} send-community both
+ neighbor {{ _IP_loops_base_ }}.{{ pe_loop }} inherit peer-policy VPNV4_TO_CLIENT
+{% endfor %}
+ exit-address-family
+{# -------------------------- #}

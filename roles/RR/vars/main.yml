@@ -2,5 +2,11 @@
 # vars file for BACKBONE
 
 Template_Listing:
-  - TPL_RR_config_LDP_global
- 
+  - TPL_RR_mpbgp
+
+_BGP_AS_number_: 99
+
+_BGP_PE_loops:
+  - 11
+  - 12
+  - 13
