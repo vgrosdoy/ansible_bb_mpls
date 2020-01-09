@@ -1,0 +1,27 @@
+---
+# TASK to create the configuration DIRECTORY of the device
+  - name: TASK GEN-CONF -- CREATE the DEVICE directory
+    file:
+      path: "gen_configs/{{ inventory_hostname }}"
+      state: directory
+    tags: gen-conf
+     
+
+# TASK to generate FULL configuration for role SANDBOX
+  - name: TASK GEN-CONF -- ALL BLOCKS of device configuration
+    template: 
+      src="templates/{{ item }}.j2"
+      dest="gen_configs/{{ inventory_hostname }}/{{ inventory_hostname }}_{{ item }}.conf"
+    with_items:
+      - "{{ Template_Listing }}"
+    tags: gen-conf
+
+
+# TASK to create the FULL configuration FILE of the device
+  - name: TASK GEN-CONF -- CREATE the FULL DEVICE configuration
+    assemble:
+      src: "gen_configs/{{ inventory_hostname }}"
+      dest: "gen_configs/{{ inventory_hostname }}.conf"
+    tags: gen-conf
+     
+...

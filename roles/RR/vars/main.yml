@@ -1,0 +1,6 @@
+---
+# vars file for BACKBONE
+
+Template_Listing:
+  - TPL_RR_config_LDP_global
+ 

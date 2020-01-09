@@ -1,0 +1,29 @@
+{# TEMPLATE TO CONFIGURE OSPF IN THE MPLS BACKBONE #}
+
+{# -------------------------- #}
+key chain KEY_OSPF
+ key 1
+  key-string aa99bb88cc77dd66ee55ff44aa
+  accept-lifetime 10:00:00 Jul 30 2018 infinite
+  send-lifetime 10:00:00 Jul 30 2018 infinite
+  cryptographic-algorithm hmac-sha-512
+{# -------------------------- #}
+bfd-template single-hop S_HOP_ITF_BFD
+ interval min-tx 250 min-rx 250 multiplier 3
+{# -------------------------- #}
+
+router ospf 1
+ router-id {{ _IP_loops_base_ }}.{{ _dev_ID_ }}
+ passive-interface default
+{% for itf in _dev_interfaces_ %}
+{% if itf.tag == 'mpls' %}
+ no passive-interface {{ itf.name }}
+{% endif %}
+{% endfor %}
+ network {{ _IP_loops_base_ }}.{{ _dev_ID_ }} 0.0.0.0 area 0.0.0.0
+ network {{ _IP_interco_base_ }}.{{ _site_ID_ }}.0 0.0.0.255 area 0.0.0.0
+ bfd all-interfaces
+{# -------------------------- #}
+
+no ip ospf name-lookup
+{# -------------------------- #}

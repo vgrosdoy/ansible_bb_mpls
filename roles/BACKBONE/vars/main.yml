@@ -1,0 +1,11 @@
+---
+# vars file for BACKBONE
+
+Template_Listing:
+  - TPL_BB_global_config
+  - TPL_BB_ldp_config
+  - TPL_BB_ospf_config
+  - TPL_BB_interfaces_config
+
+_IP_loops_base_: 172.24.99
+_IP_interco_base_: 172.24

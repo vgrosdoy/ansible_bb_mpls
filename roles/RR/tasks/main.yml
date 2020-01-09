@@ -1,0 +1,9 @@
+---
+# tasks file for ROLE_SandBox
+
+# TAGS = gen-conf
+- import_tasks: TASK_gen_conf.yml
+
+# TAGS = push-conf
+- import_tasks: TASK_push_conf.yml
+...

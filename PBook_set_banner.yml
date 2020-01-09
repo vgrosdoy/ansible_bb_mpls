@@ -1,0 +1,25 @@
+---
+# PLAYBOOK for TESTING ansible feature
+- name: PLAYBOOK SET BANNER
+  hosts: all
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: set the banner LOGIN
+    ios_banner:
+      banner: login
+      text: ======= {{ inventory_hostname }} ======= VGR__MyLAB___Powered_by_EVENG =======
+      state: present
+      
+  - name: set the banner EXEC
+    ios_banner:
+      banner: exec
+      state: absent
+      
+  - name: set the banner INCOMING
+    ios_banner:
+      banner: incoming
+      state: absent
+      
+...

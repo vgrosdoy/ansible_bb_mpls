@@ -1,0 +1,33 @@
+{# TEMPLATE TO CONFIGURE GLOBAL LDP IN THE MPLS BACKBONE #}
+
+{# -------------------------- #}
+ip access-list standard ALL_PE_LOOP
+ permit 172.24.99.0 0.0.0.255
+ip access-list standard LDP_PEERS
+ permit 172.24.99.0 0.0.0.255
+
+{# -------------------------- #}
+key chain KEY_LDP
+ key 1
+  key-string aa99bb88cc77d
+  accept-lifetime 10:00:00 Jul 30 2018 infinite
+  send-lifetime 10:00:00 Jul 30 2018 infinite
+  cryptographic-algorithm hmac-sha-512
+
+{# -------------------------- #}
+mpls label protocol ldp
+mpls ldp password required for LDP_PEERS
+mpls ldp password option 1 for LDP_PEERS key-chain KEY_LDP
+mpls ldp router-id Loopback0
+no mpls ldp advertise-labels
+mpls ldp advertise-labels for ALL_PE_LOOP
+
+{# -------------------------- #}
+{#
+======================
+A ANALYSER
+======================
+mpls ldp explicit-null for ALL_PE_LOOP to LDP_PEERS
+mpls ldp graceful-restart
+mpls ldp session protection for LDP_PEERS
+#}

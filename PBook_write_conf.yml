@@ -1,0 +1,12 @@
+---
+- hosts: BACKBONE
+  connection: local
+  gather_facts: no
+
+  tasks:
+  - name: save running-config
+    ios_config:
+      provider:
+        timeout: 25
+      save_when: modified
+#      timeout: 30 ==> Deprecated !!!

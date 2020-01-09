@@ -1,0 +1,29 @@
+[BACKBONE]
+P1 ansible_host=172.24.99.1
+P2 ansible_host=172.24.99.2
+PE1 ansible_host=172.24.99.11
+PE2 ansible_host=172.24.99.12
+PE3 ansible_host=172.24.99.13
+
+[RR]
+P1 ansible_host=172.24.99.1
+P2 ansible_host=172.24.99.2
+
+[PE]
+PE1 ansible_host=172.24.99.11
+PE2 ansible_host=172.24.99.12
+PE3 ansible_host=172.24.99.13
+
+[CE]
+A-CE1-1 ansible_host=10.10.101.101
+A-CE1-2 ansible_host=10.10.101.102
+A-CE2-1 ansible_host=10.10.102.101
+A-CE2-2 ansible_host=10.10.102.102
+
+[CORES]
+A1 ansible_host=10.10.101.103
+B1 ansible_host=10.10.102.103
+
+[all:vars]
+ansible_user=vgr
+ansible_ssh_pass=vgr001

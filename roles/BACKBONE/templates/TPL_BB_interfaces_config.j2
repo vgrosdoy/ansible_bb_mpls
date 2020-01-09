@@ -1,0 +1,24 @@
+{# TEMPLATE TO CONFIGURE INTERFACES IN THE MPLS BACKBONE #}
+
+interface Loopback0
+ description DNS_LOOP_BB
+ ip address {{ _IP_loops_base_ }}.{{ _dev_ID_ }} {{ mask_32 }}
+{# -------------------------- #}
+{% for itf in _dev_interfaces_ %}
+interface {{ itf.name }}
+ description {{ itf.descr }}
+ ip address {{ _IP_interco_base_ }}.{{ _site_ID_ }}.{{ itf.ip }} {{ mask_30 }}
+{# -------------------------- #}
+{% if itf.tag == 'mpls' %}
+ ip ospf authentication key-chain KEY_OSPF
+ ip ospf network point-to-point
+ ip ospf cost {{ itf.ospf_cost }}
+ duplex full
+ speed 1000
+ media-type rj45
+ mpls ip
+ bfd template S_HOP_ITF_BFD
+{% endif %}
+{# -------------------------- #}
+{% endfor %}
+{# -------------------------- #}

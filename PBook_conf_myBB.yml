@@ -1,0 +1,12 @@
+---
+# PLAYBOOK for MY BB MPLS
+- name : RUN MY BB MPLS CONFIGURATION
+  gather_facts: False
+  connection: local
+  vars_files:
+    - vars/main.yml
+  hosts: BACKBONE
+  roles :
+  - BACKBONE
+#  - RR
+...

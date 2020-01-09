@@ -1,0 +1,23 @@
+_dev_ID_: 2
+
+_dev_interfaces_:
+- name: GigabitEthernet0/0
+  descr: To_P1_Gi0/0_BB
+  ip: 2
+  ospf_cost: 120
+  tag: mpls
+- name: GigabitEthernet0/1
+  descr: To_PE2_Gi0/1_BB
+  ip: 13
+  ospf_cost: 100
+  tag: mpls
+- name: GigabitEthernet0/2
+  descr: To_PE1_Gi0/2_BB
+  ip: 21
+  ospf_cost: 180
+  tag: mpls
+- name: GigabitEthernet0/4
+  descr: To_PE3_Gi0/1_BB
+  ip: 29
+  ospf_cost: 180
+  tag: mpls

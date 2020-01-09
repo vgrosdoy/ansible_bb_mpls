@@ -1,0 +1,16 @@
+---
+# TASK to push FULL configuration for role SANDBOX
+  - name: TASK PUSH-CONF -- ALL BLOCKS of device configuration
+    ios_config: 
+      src="templates/{{ item }}.j2"
+    with_items:
+      - "{{ Template_Listing }}"
+    tags: push-conf
+    
+# TASK to WRITE configuration for role SANDBOX
+  - name: TASK PUSH-CONF -- SAVE CONFIGURATION
+    ios_config:
+      save_when: modified
+    tags: push-conf
+...
+
