@@ -3,7 +3,6 @@
 {# -------------------------- #}
 hostname {{ inventory_hostname }}
 ip domain name mylab.eu
-ip name-server 8.8.8.8
 cdp timer 5
 username vgr privilege 15 password 0 vgr001
 username cnslabauto privilege 15 password 0 cnslabauto_2020
@@ -22,7 +21,7 @@ alias exec shrou sh run | sec router
 line vty 0 4
  privilege level 15
  login local
- transport input telnet ssh
+ transport input ssh
 {# -------------------------- #}
 ip host P1 172.24.99.1
 ip host P2 172.24.99.2

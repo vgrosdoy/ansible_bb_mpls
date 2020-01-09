@@ -7,6 +7,6 @@
   - name: save running-config
     ios_config:
       provider:
-        timeout: 25
+        timeout: 60
       save_when: modified
 #      timeout: 30 ==> Deprecated !!!
