@@ -1,0 +1,11 @@
+---
+# vars file for BACKBONE
+
+Template_Listing:
+  - TPL_PE_mpbgp
+
+_BGP_AS_number_: 99
+
+_BGP_RR_loops:
+  - 1
+  - 2

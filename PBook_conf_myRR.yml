@@ -1,0 +1,11 @@
+---
+# PLAYBOOK for MY BB MPLS ==> RR
+- name : RUN MY RR CONFIGURATION
+  gather_facts: False
+  connection: local
+  vars_files:
+    - vars/main.yml
+  hosts: RR
+  roles :
+  - RR
+...
