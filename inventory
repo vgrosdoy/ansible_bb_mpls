@@ -25,5 +25,5 @@ A1 ansible_host=10.10.101.103
 B1 ansible_host=10.10.102.103
 
 [all:vars]
-ansible_user=vgr
-ansible_ssh_pass=vgr001
+ansible_user=
+ansible_ssh_pass=
