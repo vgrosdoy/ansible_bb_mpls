@@ -1,4 +1,5 @@
 #BB MPLS PLAYBOOKS
 
-##by : Vincent GROSDOY
-##from: my local ansible VM
+--> Ansible playbook to configur MPLS/VPN bascbone base on Cisco routers and switches
+
+--> Tools : Ansible // eve-ng // GIT

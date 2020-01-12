@@ -26,4 +26,4 @@ B1 ansible_host=10.10.102.103
 
 [all:vars]
 ansible_user=vgr
-ansible_ssh_pass=mypassword
+ansible_ssh_pass=vgr001
