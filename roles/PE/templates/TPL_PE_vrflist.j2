@@ -1,0 +1,10 @@
+{# -------------------------- #}
+{% for _vrf_loop in _vrf_list_ %}
+ip vrf {{ _vrf_loop.name }}
+ rd {{ _BGP_AS_number_ }}:{{ _vrf_loop.id }}
+{% if _vrf_loop.type == "A2A" %}
+ route-target import {{ _BGP_AS_number_ }}:{{ _vrf_loop.id }}
+ route-target export {{ _BGP_AS_number_ }}:{{ _vrf_loop.id }}
+{% endif %}
+{% endfor %}
+{# -------------------------- #}

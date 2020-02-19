@@ -1,0 +1,23 @@
+{# TEMPLATE TO CONFIGURE INTERFACES IN MULTIPLE VRF #}
+
+{# -------------------------- #}
+{% for itf in _dev_interfaces_ %}
+{# -------------------------- #}
+{% if itf.tag == 'routed-static' %}
+interface {{ itf.name }}
+ description {{ itf.descr }}
+{% if itf.vrf is defined %}
+ ip vrf forwarding {{ itf.vrf }}
+{% endif %}
+ ip address {{ _IP_interco_base_ }}.{{ _site_ID_ }}.{{ itf.ip }} {{ mask_30 }}
+{% if itf.encap is defined %}
+ encapsulation dot1Q {{ itf.encap }}
+{% else %}
+ duplex full
+ speed 1000
+ media-type rj45
+{% endif %}
+{% endif %}
+{# -------------------------- #}
+{% endfor %}
+{# -------------------------- #}

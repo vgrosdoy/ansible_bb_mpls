@@ -1,0 +1,5 @@
+_vrf_list_:
+  - name: ADMIN
+    id : 666
+    type : A2A
+
