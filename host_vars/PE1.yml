@@ -16,3 +16,9 @@ _dev_interfaces_:
   ip: 22
   ospf_cost: 180
   tag: mpls
+- name: GigabitEthernet0/2.66
+  descr: To_P2_Gi0/2.66_ADM
+  ip: 25
+  ospf_cost: 180
+  encap: 66
+  tag: routed-static

@@ -2,6 +2,8 @@
 # vars file for BACKBONE
 
 Template_Listing:
+  - TPL_PE_vrflist
+  - TPL_PE_interfaces
   - TPL_PE_mpbgp
 
 _BGP_AS_number_: 99

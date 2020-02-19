@@ -33,7 +33,6 @@ router bgp {{ _BGP_AS_number_ }}
  !
  bgp router-id {{ _IP_loops_base_ }}.{{ _dev_ID_ }}
  bgp log-neighbor-changes
- no bgp default ipv4-unicast
 {% for rr_loop in _BGP_RR_loops %}
  neighbor {{ _IP_loops_base_ }}.{{ rr_loop }} inherit peer-session BGP_TO_RR
  neighbor {{ _IP_loops_base_ }}.{{ rr_loop }} fall-over bfd multi-hop
